@@ -5,4 +5,4 @@ person = input("How many people to split the bill? " )
 tip_decimal = int(tip)/100 +1
 pay= (int(bill)/int(person)) * tip_decimal
 final_pay = '{0:.2f}'.format(pay)
-print(f"Each person should pay: {final_pay}")
+print(f"Each person will pay: {final_pay}")
