@@ -38,7 +38,7 @@ print("Your mission is to find the treasure.")
 #Write your code below this line 👇
 opt1=input("Ok Lad, What weapon would you choose?(sword,spear or gun)\n")
 if (opt1.lower()=="gun"):
-     print("You still have lot to learn.\nCome back later!!")
+     print("You still have lot to learn.\nCome back later child!!")
 else:
     opt2=input("Whom would you have your first fight with?(goblin or orc)\n")
     if (opt2.lower()=="orc"):
