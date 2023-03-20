@@ -4,4 +4,4 @@ The final project was to create a program where each person can enter their name
 
 I was kind of stuck in nesting and the proper symbol between dictionary{} and list[]
 
-Day 10 is also done.So Im only 1/10 through the whole journey.
+Day 9 is also done.
