@@ -1,5 +1,5 @@
 from turtle import Turtle, Screen
 
-the_turtle =Turtle()
+the_turte =Turtle()
 screen=Screen()
 screen.exitonclick()
