@@ -1,5 +1,5 @@
 from turtle import Turtle, Screen
-import random
+
 shapes=Turtle()
 # length=200
 # Traingle=360/3
