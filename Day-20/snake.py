@@ -1,39 +1,48 @@
-from turtle import Turtle, Screen
-import time
-screen=Screen()
-screen.setup(width=600,height=600)
-screen.bgcolor("black")
-screen.title("Snake Game")
-screen.tracer(0)
-x=0
-segments=[]
-for i in range(3):
-    snake=Turtle(shape="square")
-    snake.color("white")
-    snake.penup()
-    snake.goto(x=-x,y=0)
-    x+=20
-    segments.append(snake)
-game_loop=True
-while game_loop:
-    screen.update()
-    time.sleep(0.1)
-    for seg_num in range(len(segments)-1, 0, -1):
-        new_x=segments[seg_num-1].xcor()
-        new_y=segments[seg_num-1].ycor()
-        segments[seg_num].goto(new_x,new_y)
+from turtle import Turtle
+X=20
+MOVE_DISTANCE=20
+# segments=[]
+# for i in range(3):
+#     snake=Turtle(shape="square")
+#     snake.color("white")
+#     snake.penup()
+#     snake.goto(x=-x,y=0)
+#     x+=20
+#     segments.append(snake)
     
-    segments[0].fd(20)   
-   
-
-
-
-
-
-
-
-
-
-
-
-screen.exitonclick()
+# for seg_num in range(len(segments)-1, 0, -1):
+#         new_x=segments[seg_num-1].xcor()
+#         new_y=segments[seg_num-1].ycor()
+#         segments[seg_num].goto(new_x,new_y)
+    
+#     segments[0].fd(20)   
+    
+class Snake:
+    
+    def __init__(self):
+         self.segments=[]
+         self.create_snake()
+    def create_snake(self):
+        for i in range(3):
+            global X
+            snake=Turtle(shape="square")
+            snake.color("white")
+            snake.penup()
+            snake.goto(x=-X,y=0)
+            X+=20
+            self.segments.append(snake)
+    def move(self):
+        for seg_num in range(len(self.segments)-1, 0, -1):
+            new_x=self.segments[seg_num-1].xcor()
+            new_y=self.segments[seg_num-1].ycor()
+            self.segments[seg_num].goto(new_x,new_y)
+            self.segments[0].fd(MOVE_DISTANCE)
+    
+    def up(self):
+        self.segments[0].setheading(90) 
+    def down(self):
+        self.segments[0].setheading(270)
+    def right(self):
+        self.segments[0].setheading(0)
+    def left(self):
+        self.segments[0].setheading(180)
