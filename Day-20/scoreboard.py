@@ -1,6 +1,7 @@
 from turtle import Turtle,Screen
 import random
-
+ALIGNMENT= "center"
+FONT=("courier",24,"normal")
 
 class Scoreboard(Turtle):
     def __init__(self):
@@ -8,11 +9,18 @@ class Scoreboard(Turtle):
        self.color("white")
        self.penup()
        self.hideturtle()
-       self.goto(0,280)
+       self.goto(0,260)
        self.point=0
-       self.write(f"Score={self.point}",True,align="center",font=('Arial', 15, 'normal'))
-       
+       self.write(f"Score={self.point}",align="center",font=('Arial', 24, 'normal'))
+    
+    def update_score(self):
+         self.write(f"Score={self.point}",align="center",font=('Arial', 24, 'normal'))
     def points(self):
         self.point+=1
+        self.clear()
+        self.update_score()
+        
+        
+       
         
 
