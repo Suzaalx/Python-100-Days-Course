@@ -16,22 +16,30 @@ MOVE_DISTANCE=20
 #         segments[seg_num].goto(new_x,new_y)
     
 #     segments[0].fd(20)   
-    
+positions=[(0, 0), (-20, 0), (-40, 0)]
 class Snake:
     
     def __init__(self):
-         self.segments=[]
-         self.create_snake()
-    def create_snake(self):
-        global X
-        for i in range(4):
+        self.segments=[]
+        self.create_snake()
+    def create_snake(self):  
+        for position in positions:
+            self.add_segment(position)
+
             
-            snake=Turtle(shape="square")
-            snake.color("white")
-            snake.penup()
-            snake.goto(x=X,y=0)
-            X=X-20
-            self.segments.append(snake)
+    def add_segment(self,position):
+        
+        snake=Turtle(shape="square")
+        snake.color("white")
+        snake.penup()
+        snake.goto(position)
+        
+        self.segments.append(snake)
+        
+    def extend(self):
+        self.add_segment(self.segments[-1].position())    
+      
+    
     def move(self):
         for seg_num in range(len(self.segments)-1, 0, -1):
             new_x=self.segments[seg_num-1].xcor()
