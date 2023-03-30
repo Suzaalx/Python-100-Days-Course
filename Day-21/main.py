@@ -12,8 +12,8 @@ screen.title("PONG GAME")
 #closes the animation 
 screen.tracer(0)
 # two paddle is created
-l_paddle = Paddle((-350,0))
-r_paddle= Paddle((350,0))
+l_paddle = Paddle((-380,0))
+r_paddle= Paddle((380,0))
 ball = Ball() 
 #movement of paddle
 screen.listen()
@@ -33,9 +33,12 @@ while game_is_on:
     # all the animation will now take place
     screen.update()
     ball.move()
-    if ball.ycor()>=300 or ball.ycor()<=-300:
-        ball.bounce()
+    if ball.ycor()>=300 or ball.ycor()<=-285:
+        ball.bounce_y()
 
+    #detect collision with paddle
+    if ball.distance(r_paddle)<50 and ball.xcor()>350 or ball.distance(l_paddle)<50 and ball.xcor()<-350:
+        ball.bounce_x()
 screen.exitonclick()
 
 
