@@ -3,19 +3,24 @@ MOVE_DISTANCE = 10
 FINISH_LINE_Y = 280
 from turtle import Turtle
 
-
 class Player(Turtle):
     def __init__(self):
         super().__init__()  
         self.shape("turtle")
         self.penup()
         self.setheading(90)
-        self.goto(STARTING_POSITION)
+
     def move(self):
-        
         self.fd(MOVE_DISTANCE)
-        if self.ycor()== FINISH_LINE_Y:
-            print("you won!")
-            self.goto(STARTING_POSITION)
+    
+    def start(self):
+        self.goto(STARTING_POSITION)
+
+    def finish_line(self):
+        if self.ycor()>FINISH_LINE_Y:
+            return True
+        else:
+            return False
+
         
         
