@@ -1,21 +1,7 @@
 from turtle import Turtle
 X=0
 MOVE_DISTANCE=20
-# segments=[]
-# for i in range(3):
-#     snake=Turtle(shape="square")
-#     snake.color("white")
-#     snake.penup()
-#     snake.goto(x=-x,y=0)
-#     x+=20
-#     segments.append(snake)
-    
-# for seg_num in range(len(segments)-1, 0, -1):
-#         new_x=segments[seg_num-1].xcor()
-#         new_y=segments[seg_num-1].ycor()
-#         segments[seg_num].goto(new_x,new_y)
-    
-#     segments[0].fd(20)   
+   
 positions=[(0, 0), (-20, 0), (-40, 0)]
 class Snake:
     
