@@ -1,12 +1,37 @@
-# num=[1,2,3]
-# new_num=[no*2 for no in num]
-# print(new_num)
+# student_dict = {
+#     "student": ["Angela", "James", "Lily"], 
+#     "score": [56, 76, 98]
+# }
 
-# new_num=[n*2 for n in range(1,5)]
-# print(new_num)
+# #Looping through dictionaries:
+# for (key, value) in student_dict.items():
+#     # print(key)
+#     # print(value)
+#     pass
+
+# student_data_frame = pandas.DataFrame(student_dict)
+
+# #Loop through rows of a data frame
+# for (index, row) in student_data_frame.iterrows():
+#     print(row.student)
+   
+
+# Keyword Method with iterrows()
+# {new_key:new_value for (index, row) in df.iterrows()}
+
+#TODO 1. Create a dictionary in this format:
+# {"A": "Alfa", "B": "Bravo"}
+
+import pandas
 
 
-names=['sujal','khatri','boksi','dragon','aydahd','dhadh']
-names2=['sujal','khatri','boksi','dragon',"hawa",'hduaidc']
-result=[name for name in names if name not in names2]
+dict=pandas.read_csv("Day-26/nato_phonetic_alphabet.csv")
+# print(dict)
+item={row.letter:row.code for (index,row) in dict.iterrows()}
+# print(item)
+
+ 
+#TODO 2. Create a list of the phonetic code words from a word that the user inputs.
+word=input("Enter a word: ").upper()
+result=[item[letter] for letter in word]
 print(result)
