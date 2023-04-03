@@ -41,10 +41,25 @@ while loop:
         state_name=State_name(answer,x,y)
         guess+=1
         guessed.append(answer)
+    elif answer=="Exit":
+        break
     elif guess==len(state_list):
         loop=False
+    elif answer=="":
+        messagebox.showinfo("No input!","Enter a state")
     elif answer in guessed:
         messagebox.showinfo(title="Incorrect guess", message=f"{answer} already guessed")
     else:
         messagebox.showinfo(title="Incorrect guess", message=f"{answer} not on the map")
+# print(guessed)
+# print(state_list)
+# creates a new csv with states which user couldn't guess.
+not_guessed=[]
+if state_list not in guessed:
+    not_guessed.append(state_list)
+# print(not_guessed)
+df=pandas.DataFrame(not_guessed)
+df.to_csv("Day-25/Us-game/learn.csv")
+
+
 screen.exitonclick()
