@@ -52,12 +52,12 @@ while loop:
     else:
         messagebox.showinfo(title="Incorrect guess", message=f"{answer} not on the map")
 # print(guessed)
-# print(state_list)
-# creates a new csv with states which user couldn't guess.
-not_guessed=[]
-if state_list not in guessed:
-    not_guessed.append(state_list)
-# print(not_guessed)
+print(state_list)
+
+# creates a new csv with states which user couldn't guess
+not_guessed=[state for state in state_list if state not in guessed]
+
+print(not_guessed)
 df=pandas.DataFrame(not_guessed)
 df.to_csv("Day-25/Us-game/learn.csv")
 
