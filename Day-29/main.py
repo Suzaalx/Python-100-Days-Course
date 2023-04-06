@@ -3,12 +3,16 @@ from tkinter import *
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #
 
 # ---------------------------- SAVE PASSWORD ------------------------------- #
-
+def save():
+    f=open("Day-29/password.txt","a")
+    f.write(f"{web_name.get()}  |  {user_name.get()}  |  {pass_name.get()}\n")
+    web_name.delete(0, END)
+    pass_name.delete(0, END)
 # ---------------------------- UI SETUP ------------------------------- #
 
 window=Tk()
 window.title("Password generator")
-window.config(padx=20,pady=20)
+window.config(padx=60,pady=40)
 
 canvas=Canvas(width=200,height=200)
 img=PhotoImage(file="Day-29/logo.png")
@@ -28,9 +32,12 @@ password.grid(column=0,row=3)
 #sticky="EW" makes the widget stick to the edges so that the layout looks better.
 web_name=Entry(width=35)
 web_name.grid(column=1,row=1,columnspan=2, sticky="EW")
+web_name.focus()
+
 
 user_name=Entry(width=35)
 user_name.grid(column=1,row=2,columnspan=2, sticky="EW")
+user_name.insert(0,"sujalxetry00@gmail.com")
 
 pass_name=Entry(width=21)
 pass_name.grid(column=1,row=3, sticky="EW")
@@ -40,7 +47,7 @@ pass_name.grid(column=1,row=3, sticky="EW")
 generate_button= Button(text="Generate Password")
 generate_button.grid(column=2,row=3, sticky="EW")
 
-button=Button(text="Add",width=36)
+button=Button(text="Add",width=36,command=save)
 button.grid(column=1,row=4,columnspan=2, sticky="EW")
 
 
