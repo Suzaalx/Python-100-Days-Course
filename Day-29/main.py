@@ -1,13 +1,37 @@
 from tkinter import *
-
+from tkinter import messagebox
+from random import *
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #
+def generate_password():
+    letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
+    numbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
+    symbols = ['!', '#', '$', '%', '&', '(', ')', '*', '+']
+
+    password_letter=[choice(letters) for _ in range(randint(8, 10))]
+    password_symbols=[choice(symbols) for _ in range(randint(2, 4))]
+    password_numbers=[choice(numbers) for _ in range(randint(2, 4))]
+    password_list= password_letter + password_symbols + password_numbers
+
+    shuffle(password_list)
+
+    password = "".join(password_list)
+    pass_name.insert(0,password)
+    # print(f"Your password is: {password}")
 
 # ---------------------------- SAVE PASSWORD ------------------------------- #
 def save():
-    f=open("Day-29/password.txt","a")
-    f.write(f"{web_name.get()}  |  {user_name.get()}  |  {pass_name.get()}\n")
-    web_name.delete(0, END)
-    pass_name.delete(0, END)
+    if web_name.get()!="" and pass_name.get()!="":
+        is_ok=messagebox.askokcancel(title="Website", message=f"These are the details entered: \n Email: {user_name.get()}\nPassword: {pass_name.get()}\nIs it okay to save?")
+        
+        if is_ok:
+            f=open("Day-29/password.txt","a")
+            f.write(f"{web_name.get()}  |  {user_name.get()}  |  {pass_name.get()}\n")
+            web_name.delete(0, END)
+            pass_name.delete(0, END)
+    else:
+        messagebox.showinfo(title="Error",message="Don't leave any field empty.")
+
+
 # ---------------------------- UI SETUP ------------------------------- #
 
 window=Tk()
@@ -44,7 +68,7 @@ pass_name.grid(column=1,row=3, sticky="EW")
 
 
 #button grids
-generate_button= Button(text="Generate Password")
+generate_button= Button(text="Generate Password",command=generate_password)
 generate_button.grid(column=2,row=3, sticky="EW")
 
 button=Button(text="Add",width=36,command=save)
