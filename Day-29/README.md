@@ -1,3 +1,3 @@
-Starting day 29.
+Done with 29.
 
-will be creating a password manager GUI app.
+Done with GUI password manager application using tkinter
