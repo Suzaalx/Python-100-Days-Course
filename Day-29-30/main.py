@@ -32,18 +32,18 @@ def save():
     if web_name.get()!="" and pass_name.get()!="":
         # is_ok=messagebox.askokcancel(title="Website", message=f"These are the details entered: \n Email: {user_name.get()}\nPassword: {pass_name.get()}\nIs it okay to save?")
         try:
-            with open("Day-29/data.json","r") as data_file:
+            with open("Day-29-30/data.json","r") as data_file:
          #reads old data
                 data=json.load(data_file)
          #if old data doesn't exist a new json file is created       
         except FileNotFoundError:
-            with open("Day-29/data.json","w") as data_file:
+            with open("Day-29-30/data.json","w") as data_file:
                 json.dump(new_data,data_file,indent=4)
         #if there was a old data then it is updated with new data
         else:
             data.update(new_data)
             
-            with open("Day-29/data.json","w") as data_file:    
+            with open("Day-29-30/data.json","w") as data_file:    
                 json.dump(data,data_file,indent=4)
         finally:
             web_name.delete(0, END)
@@ -55,7 +55,7 @@ def save():
 #-------------------find password---------------------------------
 def find_password():
     try:
-        with open("Day-29/data.json","r") as data_file:
+        with open("Day-29-30/data.json","r") as data_file:
             data=json.load(data_file)
         # try:
         #     pass_name.insert(0,data[web_name.get()]['password'])
