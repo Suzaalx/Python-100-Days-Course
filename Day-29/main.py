@@ -61,7 +61,7 @@ def find_password():
         #     pass_name.insert(0,data[web_name.get()]['password'])
     except KeyError:
             messagebox.showinfo(title="Error",message=f"{web_name.get() }is not on the data")
-    except:
+    except FileNotFoundError:
         messagebox.showinfo(title="No file found",message="There was no data file found.\nError")
     else:
         password = data[web_name.get()]['password']
