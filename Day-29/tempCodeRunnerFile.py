@@ -1,1 +1,0 @@
-is_ok=messagebox.askokcancel(title="Website", message=f"These are the details entered: \n Email: {user_name.get()}\nPassword: {pass_name.get()}\nIs it okay to save?")

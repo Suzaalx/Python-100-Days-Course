@@ -31,15 +31,41 @@ def save():
     }
     if web_name.get()!="" and pass_name.get()!="":
         # is_ok=messagebox.askokcancel(title="Website", message=f"These are the details entered: \n Email: {user_name.get()}\nPassword: {pass_name.get()}\nIs it okay to save?")
-        
-        with open("Day-29/data.json","w") as data_file:
-            json.dump(new_data,data_file, indent=4)
-        web_name.delete(0, END)
-        pass_name.delete(0, END)
+        try:
+            with open("Day-29/data.json","r") as data_file:
+         #reads old data
+                data=json.load(data_file)
+         #if old data doesn't exist a new json file is created       
+        except FileNotFoundError:
+            with open("Day-29/data.json","w") as data_file:
+                json.dump(new_data,data_file,indent=4)
+        #if there was a old data then it is updated with new data
+        else:
+            data.update(new_data)
+            
+            with open("Day-29/data.json","w") as data_file:    
+                json.dump(data,data_file,indent=4)
+        finally:
+            web_name.delete(0, END)
+            pass_name.delete(0, END)
     else:
         messagebox.showinfo(title="Error",message="Don't leave any field empty.")
 
 
+#-------------------find password---------------------------------
+def find_password():
+    try:
+        with open("Day-29/data.json","r") as data_file:
+            data=json.load(data_file)
+        # try:
+        #     pass_name.insert(0,data[web_name.get()]['password'])
+    except KeyError:
+            messagebox.showinfo(title="Error",message=f"{web_name.get() }is not on the data")
+    except:
+        messagebox.showinfo(title="No file found",message="There was no data file found.\nError")
+    else:
+        password = data[web_name.get()]['password']
+        messagebox.showinfo(title="Website details",message=f"website: {web_name.get()}\npassword: {password}")
 # ---------------------------- UI SETUP ------------------------------- #
 
 window=Tk()
@@ -62,20 +88,23 @@ password.grid(column=0,row=3)
 
 #Entry grids. 
 #sticky="EW" makes the widget stick to the edges so that the layout looks better.
-web_name=Entry(width=35)
-web_name.grid(column=1,row=1,columnspan=2, sticky="EW")
+web_name=Entry(width=21)
+web_name.grid(column=1,row=1, sticky="EW")
 web_name.focus()
 
 
-user_name=Entry(width=35)
+user_name=Entry(width=5)
 user_name.grid(column=1,row=2,columnspan=2, sticky="EW")
 user_name.insert(0,"sujalxetry00@gmail.com")
 
-pass_name=Entry(width=21)
-pass_name.grid(column=1,row=3, sticky="EW")
+pass_name=Entry(width=5)
+pass_name.grid(column=1,row=3, sticky="EW",pady=5)
 
 
 #button grids
+search_button=Button(text="Search",width=30, command= find_password)
+search_button.grid(column=2,row=1, sticky="EW")
+
 generate_button= Button(text="Generate Password",command=generate_password)
 generate_button.grid(column=2,row=3, sticky="EW")
 
