@@ -2,6 +2,7 @@ from tkinter import *
 from tkinter import messagebox
 from random import *
 import pyperclip
+import json
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #
 def generate_password():
     letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
@@ -22,14 +23,19 @@ def generate_password():
 
 # ---------------------------- SAVE PASSWORD ------------------------------- #
 def save():
+    new_data={
+        web_name.get():{
+            "email": user_name.get(),
+            "password": pass_name.get()
+        }
+    }
     if web_name.get()!="" and pass_name.get()!="":
-        is_ok=messagebox.askokcancel(title="Website", message=f"These are the details entered: \n Email: {user_name.get()}\nPassword: {pass_name.get()}\nIs it okay to save?")
+        # is_ok=messagebox.askokcancel(title="Website", message=f"These are the details entered: \n Email: {user_name.get()}\nPassword: {pass_name.get()}\nIs it okay to save?")
         
-        if is_ok:
-            f=open("Day-29/password.txt","a")
-            f.write(f"{web_name.get()}  |  {user_name.get()}  |  {pass_name.get()}\n")
-            web_name.delete(0, END)
-            pass_name.delete(0, END)
+        with open("Day-29/data.json","w") as data_file:
+            json.dump(new_data,data_file, indent=4)
+        web_name.delete(0, END)
+        pass_name.delete(0, END)
     else:
         messagebox.showinfo(title="Error",message="Don't leave any field empty.")
 
