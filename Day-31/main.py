@@ -1,4 +1,5 @@
 from tkinter import *
+from tkinter import messagebox
 import pandas
 import random
 BACKGROUND_COLOR = "#B1DDC6"
@@ -9,6 +10,13 @@ except FileNotFoundError:
     original_words=pandas.read_csv("Day-31/data/french_words.csv")
     item={row.French:row.English for (index,row) in original_words.iterrows()}
     data=original_words.to_dict(orient="records")
+except ValueError or IndexError:
+    
+    play_again=messagebox.askokcancel(title="There is no words left.",message="Do you want to play again?")
+    if play_again:
+        original_words=pandas.read_csv("Day-31/data/french_words.csv")
+        item={row.French:row.English for (index,row) in original_words.iterrows()}
+        data=original_words.to_dict(orient="records")
 else:
     item={row.French:row.English for (index,row) in words.iterrows()}
     data=words.to_dict(orient="records")

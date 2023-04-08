@@ -73,7 +73,7 @@ window.title("Password generator")
 window.config(padx=60,pady=40)
 
 canvas=Canvas(width=200,height=200)
-img=PhotoImage(file="Day-29/logo.png")
+img=PhotoImage(file="Day-29-30/logo.png")
 canvas.create_image(100,100,image=img)
 canvas.grid(column=1,row=0)
 #label grids
