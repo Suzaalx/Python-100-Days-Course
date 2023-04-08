@@ -4,7 +4,7 @@ import smtplib
 import random
 
 my_email="regasir12@gmail.com"
-password="jltuhbmstsamijcw"
+password="NO"
 
 
 data=pandas.read_csv("birthdays.csv")

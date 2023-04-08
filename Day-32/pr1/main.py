@@ -3,7 +3,7 @@ import datetime as dt
 import random
 
 my_email="regasir12@gmail.com"
-password="jltuhbmstsamijcw"
+password="NO"
 def email():
     quotes=open("Day-32/quotes.txt").read().splitlines()
     quote=random.choice(quotes)
