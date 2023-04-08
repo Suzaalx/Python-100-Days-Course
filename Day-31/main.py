@@ -48,7 +48,7 @@ def is_known():
     new_data.to_csv("Day-31/data/to_learn.csv",index=False)
     new_word()
     
-    
+
 window=Tk()
 
 window.title("Flash card")
