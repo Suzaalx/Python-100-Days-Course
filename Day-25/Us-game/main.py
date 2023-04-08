@@ -10,7 +10,7 @@ states=data.to_dict()
 state_list=data["state"].to_list()
 state_x=data["x"].to_list()
 state_y=data["y"].to_list()
-print(state_x)
+# print(states)
 
 
 #state name writer function in their respective co-ordinate

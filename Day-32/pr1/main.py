@@ -21,5 +21,5 @@ def email():
 
 now=dt.datetime.now()
 print(now.weekday())
-if now.weekday()==4:
+if now.weekday()==1:
     email()
