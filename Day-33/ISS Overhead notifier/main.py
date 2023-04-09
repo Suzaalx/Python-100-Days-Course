@@ -1,11 +1,13 @@
 import requests
 from datetime import datetime 
 import smtplib
+import time
 
 my_email="regasir12@gmail.com"
 password="btzyjsfsqwninjhj"
 
 def email():
+    time.sleep(60)
     print("HH")
     with smtplib.SMTP("smtp.gmail.com") as connection:
         connection.starttls()
@@ -48,7 +50,7 @@ time_now = datetime.now()
 print(time_now.hour)
 
 
-if (lat_diff<60 or lat_diff>-60) and (long_diff<60 or long_diff>-60):
+if (lat_diff<60 and lat_diff>-60) and (long_diff<60 and long_diff>-60):
     if sunset<=time_now.hour or sunrise>=time_now.hour:
         email()
         
