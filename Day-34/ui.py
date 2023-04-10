@@ -31,10 +31,17 @@ class QuizUi:
     
     def get_next_question(self):
         self.canvas.config(bg="white")
-        self.score.config(text=f"Score: {self.quiz.score}")
-        q_text=self.quiz.next_question()
-        self.canvas.itemconfig(self.text,text=q_text)
-    
+        if self.quiz.still_has_questions():
+            
+            self.score.config(text=f"Score: {self.quiz.score}")
+            q_text=self.quiz.next_question()
+            self.canvas.itemconfig(self.text,text=q_text)
+        else:
+            
+            self.canvas.itemconfig(self.text,text="You've reached the end of the quiz!!")
+            self.right_button.config(state="disabled")
+            self.wrong_button.config(state="disabled")
+
 
     def true(self):
         is_right=self.quiz.check_answer("True")
