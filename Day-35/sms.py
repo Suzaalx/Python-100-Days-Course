@@ -1,7 +1,10 @@
+import os
+from dotenv import load_dotenv
 
 from twilio.rest import Client
+load_dotenv("D:/SAT/ss/Documents/docs/EnvironmentVariable/.env")
 
-auth_token="f947f313ae8a88d20f6ae336e5d99fe4"
+auth_token=os.getenv("twilio_token")
 acc_sid="ACccb9465d5d4237b0a158ac14826fb231"
 
 
