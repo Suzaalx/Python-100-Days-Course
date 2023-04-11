@@ -1,6 +1,7 @@
 import os
 from dotenv import load_dotenv
 import requests
+import smtplib
 load_dotenv("D:/SAT/ss/Documents/docs/EnvironmentVariable/.env")
 STOCK = "TSLA"
 COMPANY_NAME = "Tesla Inc"
@@ -45,6 +46,28 @@ for n in range (3):
 # Send a seperate message with the percentage change and each article's title and description to your phone number. 
 print(percentage)
 print(message)
+
+
+my_email="regasir12@gmail.com"
+password=os.getenv("email_password")
+
+def email():
+    
+    print("HH")
+    with smtplib.SMTP("smtp.gmail.com") as connection:
+        connection.starttls()
+        connection.login(user=my_email,password=f"{password}")
+        connection.sendmail(from_addr=my_email,
+                        to_addrs="sujalxetry00@gmail.com",
+                        msg=f"Subject:Stoke ALert\n\nTesla {percentage}\n{message}.")
+        
+        
+email()
+
+
+
+
+
 #Optional: Format the SMS message like this: 
 """
 TSLA: 🔺2%

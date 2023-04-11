@@ -2,16 +2,20 @@ import requests
 from datetime import datetime 
 import smtplib
 import time
+import os
+from dotenv import load_dotenv
+
+load_dotenv("D:/SAT/ss/Documents/docs/EnvironmentVariable/.env")
 
 my_email="regasir12@gmail.com"
-password="btzyjsfsqwninjhj"
+my_password= os.getenv("email_password")
 
 def email():
     time.sleep(60)
     print("HH")
     with smtplib.SMTP("smtp.gmail.com") as connection:
         connection.starttls()
-        connection.login(user=my_email,password=password)
+        connection.login(user=my_email,password=f"{my_password}")
         connection.sendmail(from_addr=my_email,
                         to_addrs="sujalxetry00@gmail.com",
                         msg=f"Subject:Look Up\n\nThere is ISS above you.\nLook Up.")
