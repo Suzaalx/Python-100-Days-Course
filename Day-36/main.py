@@ -2,17 +2,17 @@ import os
 from dotenv import load_dotenv
 import requests
 import smtplib
+from email.mime.text import MIMEText
 load_dotenv("D:/SAT/ss/Documents/docs/EnvironmentVariable/.env")
 STOCK = "TSLA"
 COMPANY_NAME = "Tesla Inc"
 stock_api = os.getenv("Stock_api")
-message=""
-## STEP 1: Use https://www.alphavantage.co
-# When STOCK price increase/decreases by 5% between yesterday and the day before yesterday then print("Get News").
+news=""
+
+
+#finds the closing value of stock of yesterday and day before yesterday
 stock_data=requests.get(url=f"https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=TSLA&outputsize=compact&apikey={stock_api}")
 stock=stock_data.json()
-
-
 
 yesterday = list(stock["Time Series (Daily)"].values())[0]
 day_before = list(stock["Time Series (Daily)"].values())[1]
@@ -24,30 +24,34 @@ day_before=list(day_before.values())[3]
     
 
 
-
+#finds percentage by which stock increased or decreased yesterday from the day before yesterday
 
 if yesterday_stock> day_before:
-    percentage= f"Increased by: {(float(yesterday_stock)/ float(day_before))* 100}"
+    perc= (float(yesterday_stock)- float(day_before))/float(day_before)* 100
+    percentage= f"Increased by : {round(perc,1)}"
     
 else:
-    percentage= f"Decreased by: {(float(day_before)/ float(yesterday_stock))* 100}"
+    perc= (float(day_before)-float(yesterday_stock))/float(yesterday_stock)* 100
+    percentage= f"Decreased by: {round(perc,1)}"
     
-    
-
+#adds the first three news article and their link to message of Tesla..
 news_api= os.getenv("News_api")
-## STEP 2: Use https://newsapi.org
-# Instead of printing ("Get News"), actually get the first 3 news pieces for the COMPANY_NAME. 
+
 news_data=requests.get(url=f"https://newsapi.org/v2/everything?q=tesla&from=2023-03-11&sortBy=publishedAt&language=en&apiKey={news_api}")
 for n in range (3):
     title=news_data.json()['articles'][n]['title']
     title_url=news_data.json()['articles'][n]['url']
-    message+= f'Title: {title}\nUrl: {title_url}\n\n'
-## STEP 3: Use https://www.twilio.com
+    desc=news_data.json()['articles'][n]["description"]
+    news+= f'{n+1}. {title}\nDescription: {desc}\nUrl: {title_url}\n\n'
+
 # Send a seperate message with the percentage change and each article's title and description to your phone number. 
 print(percentage)
-print(message)
+print(news)
+
+news = news.encode('ascii', 'ignore').decode('ascii')
 
 
+#sends email with percentage change and latest news 
 my_email="regasir12@gmail.com"
 password=os.getenv("email_password")
 
@@ -59,7 +63,7 @@ def email():
         connection.login(user=my_email,password=f"{password}")
         connection.sendmail(from_addr=my_email,
                         to_addrs="sujalxetry00@gmail.com",
-                        msg=f"Subject:Stoke ALert\n\nTesla {percentage}\n{message}.")
+                        msg=f"Subject:Stock Alert\n\nTesla {percentage}\n\n{news}\n.")
         
         
 email()
@@ -68,14 +72,5 @@ email()
 
 
 
-#Optional: Format the SMS message like this: 
-"""
-TSLA: 🔺2%
-Headline: Were Hedge Funds Right About Piling Into Tesla Inc. (TSLA)?. 
-Brief: We at Insider Monkey have gone over 821 13F filings that hedge funds and prominent investors are required to file by the SEC The 13F filings show the funds' and investors' portfolio positions as of March 31st, near the height of the coronavirus market crash.
-or
-"TSLA: 🔻5%
-Headline: Were Hedge Funds Right About Piling Into Tesla Inc. (TSLA)?. 
-Brief: We at Insider Monkey have gone over 821 13F filings that hedge funds and prominent investors are required to file by the SEC The 13F filings show the funds' and investors' portfolio positions as of March 31st, near the height of the coronavirus market crash.
-"""
+
 
