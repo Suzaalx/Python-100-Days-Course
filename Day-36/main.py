@@ -2,7 +2,7 @@ import os
 from dotenv import load_dotenv
 import requests
 import smtplib
-from email.mime.text import MIMEText
+
 load_dotenv("D:/SAT/ss/Documents/docs/EnvironmentVariable/.env")
 STOCK = "TSLA"
 COMPANY_NAME = "Tesla Inc"
@@ -48,6 +48,8 @@ for n in range (3):
 print(percentage)
 print(news)
 
+
+#just ignoring the ascii which was causing error. Not the best way but well it works for now ig?
 news = news.encode('ascii', 'ignore').decode('ascii')
 
 
@@ -57,7 +59,7 @@ password=os.getenv("email_password")
 
 def email():
     
-    print("HH")
+    print("working")
     with smtplib.SMTP("smtp.gmail.com") as connection:
         connection.starttls()
         connection.login(user=my_email,password=f"{password}")
