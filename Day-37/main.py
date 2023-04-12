@@ -4,7 +4,8 @@ username= "boksi00"
 token= "8888888888"
 graph_id= "graph1"
 pixela_endpoint= "https://pixe.la/v1/users"
-today= datetime.now()
+today= datetime(year=2023,month=4,day=11)
+date= today.strftime("%Y%m%d")
 print(today)
 user_params={
     "token": token,
@@ -42,5 +43,13 @@ pixel_config={
 
 
 
-response= requests.post(url=pixel_endpoint,json=pixel_config,headers=headers)
+# response= requests.post(url=pixel_endpoint,json=pixel_config,headers=headers)
+# print(response.text)
+
+
+update_endpoint= f'{pixel_endpoint}/{date}'
+update_config={
+    "quantity": "89"
+}
+response= requests.delete(url=update_endpoint,json=update_config,headers=headers)
 print(response.text)
