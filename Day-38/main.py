@@ -1,3 +1,4 @@
+#Workout tracking app using Nutritionix and Sheety APIs in Google Sheets
 from datetime import datetime
 import requests
 import os
