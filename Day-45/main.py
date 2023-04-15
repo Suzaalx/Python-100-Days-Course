@@ -1,24 +1,37 @@
 from bs4 import BeautifulSoup
-import lxml
-with open("Day-45/website.html",encoding="utf-8") as file:
-    contents = file.read()
-soup = BeautifulSoup(contents, "html.parser")
+import requests
 
-all_anchor_tags = soup.find_all(name="a")
-# print(all_anchor_tags)
 
-# for tag in all_anchor_tags:
-#     # print(tag.getText())
-#     # print(tag.get("href"))
+response=requests.get("https://news.ycombinator.com/news")
+
+yc_web_page=response.text
+
+soup=BeautifulSoup(yc_web_page,"html.parser")
+
+print(soup.title)
+
+# print(soup.find(name="span",class_="titlelink").getText())
+
+title=[]
+upvote=[]
+link=[]
+for new in soup.find_all(name="span",class_="titleline"):
+    title.append(new.getText())
+    link.append(new.find(name="a")["href"])
+
+for new in soup.find_all(name="span",class_="subline"):
+    if new.find(name="span",class_="score") is None:
+        upvote.append(0)
+    else:
+        upvote.append(new.find(name="span",class_="score").getText())
     
-    
-# heading = soup.findAll(name="p")
-# for n in heading:
-#     print(n.getText())
-#     print(n.get("class"))
+   
+print(len(title))
+print(len(upvote))
 
-companny_url = soup.select_one(selector="p a")
-print(companny_url)
 
-heading=soup.select(selector=".heading")
-print(heading)
+for i in range(len(upvote)):
+    print(title[i])
+    print(upvote[i])
+    print(link[i])
+    print("_________________________________________________")
