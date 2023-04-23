@@ -71,7 +71,7 @@ class fill_data :
 
     def fill_form(self):
         self.driver.get(DOC_URL)
-        number=len(self.address)
+        #zip can iterate through multiple lists at the same time. 
         for address,price,link in zip(self.address,self.price,self.url):
             time.sleep(1)
             #just copy pasting the xpath of the input fields in the google form.
