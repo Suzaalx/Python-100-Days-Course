@@ -1,8 +1,8 @@
-from flask import Flask, request, jsonify, render_template
+from flask import Flask, render_template
 import requests
 
 app = Flask(__name__)
-blogs= requests.get("https://api.npoint.io/e303be1aaefe48765156")
+blogs= requests.get("https://api.npoint.io/7b43b457431b91bdd0c4")
 data= blogs.json()
 for blog in data:
     print(blog["title"])

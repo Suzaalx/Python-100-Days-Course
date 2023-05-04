@@ -2,7 +2,12 @@
 module.exports = {
   content: ["./templates/**/*.{html,js}"],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        Bruno: ["Bruno Ace SC", "cursive"],
+
+      },
+    },
   },
   plugins: [],
 }

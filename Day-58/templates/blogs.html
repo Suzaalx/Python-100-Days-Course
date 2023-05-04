@@ -5,10 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="{{ url_for('static', filename='output.css')}}" rel="stylesheet">
     <script src="https://kit.fontawesome.com/754d4aae16.js" crossorigin="anonymous"></script>
-    <title>Boksi Blogs</title>
+    <title>blogs</title>
     <body>
-        <h1>{{blog.title}}</h1>
-        <p>{{blog.body}}</p>
+        <header class= "bg-bottom bg-cover max-w-full min-h-[60vh] py-6 text-white px-4  md:px-20 lg:py-10 lg:px-28" style= "background-image: url('{{blog.image}}')">
+        
+            {% include "header.html"%}
+        
+        <h1 class= " shadow-lg p-16 text-5xl flex items-center text-center justify-center mt-20 mx-40
+        ">{{blog.title}}</h1>
+        </div>
+        </header>
+        <p class=" px-80 m-4 py-12 tracking-wide text-xl  text-center  ">{{blog.body}}</p>
     </body>
 
 </head>

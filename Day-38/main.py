@@ -46,6 +46,8 @@ for n in response["exercises"]:
             "calories": n["nf_calories"],
         }
     }
+    sheety_auth= os.getenv("sheety_auth")
+    sheety_header={"Authorization": f"{sheety_auth}"}
     document=requests.post(url=sheety_endpoint,json=sheety_config,headers=sheety_header)
     print(document.status_code)
     print(document.text)
