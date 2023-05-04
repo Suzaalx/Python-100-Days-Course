@@ -7,7 +7,7 @@ Suzaalx
 
 - **Step 1**: clone the source code from GitHub
 ```
-git clone [https://github.com/JmilkFan/JmilkFan-s-Blog.git](https://github.com/Suzaalx/Chronicle-Avenue-blog.git)
+git clone https://github.com/Suzaalx/Chronicle-Avenue-blog.git
 
 
 ```
