@@ -1,0 +1,11 @@
+click
+dominate
+Flask
+Flask-Bootstrap
+Flask-WTF
+itsdangerous
+Jinja2
+MarkupSafe
+visitor
+Werkzeug
+WTForms
