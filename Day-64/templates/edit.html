@@ -1,18 +1,24 @@
 {% extends 'base.html' %}
 
 
-{% block styles %}
-  {{ super() }}
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,700">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,700">
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
-{% endblock %}
+
 
 {% block title %}Edit Movies{% endblock %}
 
 {% block content %}
 <div class="content">
-  <h1 class="heading">Movie Title</h1>
+  <h1 class="heading">{{movie.title}}</h1>
     <p class="description">Edit Movie Rating</p>
+
+
+    <form action ="{{url_for('edit',id=movie.id)}}" method="POST">
+
+        <label for="review">Movie Review</label>
+        <input type="text" id="review" name="review" >
+        <label for="ranking">Movie Ranking</label>
+        <input type="number" id="ranking" name="ranking" step="1" >
+        <button type="submit" class="btn btn-primary">Submit</button>
+        
+    </form>
   </div>
 {% endblock %}
