@@ -1,0 +1,26 @@
+{% extends "base.html"%}
+
+{% block title %}EDIT{% endblock %}
+
+{% block content %}
+<div class="max-w-md mx-auto">
+    <h1 class="text-3xl uppercase text-center mt-8 font-bold mb-6">Edit</h1>
+    <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-6">
+      <h2 class="text-xl font-semibold mb-2">Book Name: {{ book.title }}</h2>
+      <h3 class="text-lg font-semibold mb-4">Current Rating: {{ book.rating }}</h3>
+      <form action="{{ url_for('edit', id=book.id) }}" method="post">
+        <input type="hidden" name="id" value="{{ book.id }}">
+        <label class="block mb-2 font-semibold">New Rating:</label>
+        <div class="flex items-center border-b border-teal-500 py-2">
+          <input class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none" type="text" name="rating" placeholder="Enter new rating...">
+          <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold p-2 rounded focus:outline-none focus:shadow-outline" type="submit" value="edit">
+            Change Rating
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+  
+{% endblock %}
+
+

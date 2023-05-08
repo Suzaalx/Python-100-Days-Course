@@ -1,15 +1,38 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Library</title>
-</head>
-<body>
-<h1>My Library</h1>
-    <ul>
-        <li></li>
-    </ul>
-    
-<a href="">Add New Book</a>
-</body>
-</html>
+{% extends 'base.html' %}
+
+{% block title %}library{% endblock %}
+
+{% block content %}
+<div class= "min-w-full min-h-[60vh] overflow-hidden shadow  rounded-lg flex-col flex justify-center text-center items-center  p-6">
+  <h1 class="text-3xl uppercase tracking-wider py-4 ">library</h1>
+  {% if books|length == 0 %}
+    <p class="py-2 text-lg uppercase text-gray-700 tracking-wide mb-4 ">no books in library</p>
+  {% else %}
+    <p class="py-2 text-sm">{{ books|length }} books in library</p>
+    {% endif %}
+    <table class="min-w-full divide-y divide-gray-200">
+        <thead class="bg-gray-50">
+          <tr>
+            <th class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Title</th>
+            <th class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Author</th>
+            <th class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Rating</th>
+            <th class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider"></th>
+          </tr>
+        </thead>
+        <tbody class="bg-white divide-y divide-gray-200">
+          {% for book in books %}
+            <tr>
+              <td class="px-6 py-4 whitespace-nowrap">{{ book.title }}</td>
+              <td class="px-6 py-4 whitespace-nowrap">{{ book.author }}</td>
+              <td class="px-6 py-4 whitespace-nowrap">{{ book.rating }}</td>
+              <td class="px-6 py-4 whitespace-nowrap text-right">
+                <a href="/edit/{{ book.id }}" class="text-indigo-600 hover:text-indigo-900 mr-20">Edit Rating</a>
+                <a href="/delete/{{ book.id }}" class="text-red-600 hover:text-red-900 ml-4">Delete</a>
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    <a class="bg-black m-4 text-center flex items-center justify-center text-white w-40 h-12 rounded uppercase text-xl " href="/add">add a book</a>
+</div>
+{% endblock %}

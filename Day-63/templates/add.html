@@ -1,18 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Add Book</title>
-</head>
-<body>
-    <form action="" method="POST">
-        <label>Book Name</label>
-        <input type="text">
-        <label>Book Author</label>
-        <input type="text">
-        <label>Rating</label>
-        <input type="text">
-        <button type="submit">Add Book</button>
-    </form>
-</body>
-</html>
+{% extends 'base.html'%}
+
+{% block title %}Add Book{% endblock %}
+{% block content %}
+    <div class="min-w-full min-h-[60vh]  rounded-lg flex-col flex justify-center text-center items-center  p-6">
+        <h1 class="text-3xl uppercase text-center">Add Book</h1>
+            
+        <form class="max-w-[60vh] " action="{{ url_for('add') }}" method="POST">
+            <label class="px-4 text-xl">Book Name</label>
+            <input class="w-full px-2 py-2 placeholder-gray-600 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent" name="title" type="text">
+            <label class="px-4 text-xl">Book Author</label>
+            <input class="w-full px-2 py-2 placeholder-gray-600 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent" name="author" type="text">
+            <label class="px-4 text-xl">Rating</label>
+            <input class="w-full px-2 py-2 placeholder-gray-600 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent" name="rating" type="text">
+            <button class="p-2 m-4 bg-black text-white w-32 h-12 uppercase " type="submit">Add Book</button>
+        </form>
+    </div>
+            
+    
+{% endblock %}
