@@ -22,6 +22,7 @@ class Movie(db.Model):
     review = db.Column(db.String(250), nullable=False)
     image= db.Column(db.String(250), nullable=False)
     
+    
     def __repr__(self):
         return f"<Movie {self.title}>"
 
@@ -63,7 +64,8 @@ def find(id):
             rating=movie.data['rating'],
             ranking=total_movies+1,
             review="",
-            image=movie.data['cover url']
+            image=movie.data['cover url'],
+            
         )
         db.session.add(movie)
         db.session.commit()
@@ -73,7 +75,7 @@ def find(id):
     return redirect(url_for('edit', id=movie.id))
 
 
-@app.route("/edit/<int:id>", methods=["GET", "POST"])
+@app.route("/edit/<id>", methods=["GET", "POST"])
 def edit(id):
     movie_to_update = Movie.query.get(id)
     if request.method == "POST":
