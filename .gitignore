@@ -1,3 +1,6 @@
 .DS_Store
 
 .gitmodules
+.idea
+.vscode
+_pycache__
